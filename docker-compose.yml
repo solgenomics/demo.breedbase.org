@@ -1,0 +1,25 @@
+version: "3.3"
+services:
+  breedbase:
+    image: breedbase/breedbase:v0.73
+    restart: always
+    deploy:
+      resources:
+        reservations:
+          memory: 12g
+
+    container_name: demo_breedbase_web
+    ports:
+      - 8091:8080
+    volumes:
+       - type: bind
+         source: /home/production/demo.breedbase.org/sgn_local.conf
+         target: /home/production/cxgn/sgn/sgn_local.conf
+       - type: bind
+         source: /home/production/demo.breedbase.org/mason
+         target: /home/production/cxgn/demo
+       - type: bind
+         source: /export/prod/public_demo
+         target: /home/production/volume
+
+
